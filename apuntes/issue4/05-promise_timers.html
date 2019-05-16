@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Asincronia</title>
+</head>
+
+<body>
+    <h1>Promise Timers #101</h1>
+    <script>
+        function sleep(ms) {
+            // console.time()
+            console.log("Durmiendo...")
+            return new Promise((resolve, reject) => {
+                    console.time(ms)
+                    setTimeout(() => {
+                        resolve(ms)
+                        console.timeEnd(ms)
+                    }, ms)
+                })
+                // console.End()
+        }
+
+        console.log("Paso 1")
+
+        Promise
+            .race([sleep(1000), sleep(1500), sleep(800)])
+            .then((ms) => console.log(`Me he retrasado..${ms}ms para el paso 2`))
+            // Promise
+            //     .all([sleep(1000), sleep(1500), sleep(800)])
+            //     .then((responses) => console.log(`Termine ${responses.length} pasos en paralelo para llegar a este momento cosmico!`))
+    </script>
+</body>
+
+</html>

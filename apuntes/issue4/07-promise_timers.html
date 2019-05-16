@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Asincronia</title>
+</head>
+
+<body>
+    <h1>Asincronia con AJAX #101</h1>
+    <script>
+        function sleep(ms) {
+            console.log("Durmiendo...")
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(ms)
+                }, ms)
+            })
+        }
+
+
+        console.log("Paso 1")
+
+
+        sleep(1000) //Se hace pesado
+            .then(sleep(1500))
+            .then(sleep(2000))
+            .then((responses) => console.log(`Termine ${responses.length} pasos en paralelo para llegar a este momento cosmico!`))
+            .finally(console.log("Termino todo!"))
+    </script>
+</body>
+
+</html>
